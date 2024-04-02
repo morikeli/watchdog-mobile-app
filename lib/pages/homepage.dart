@@ -78,12 +78,8 @@ class _HomepageState extends State<Homepage> {
               itemCount: reportedIncidents.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
-                  elevation: 1,
-                  borderOnForeground: true,
-                  surfaceTintColor: Colors.black,
                   margin: const EdgeInsets.all(5.0),
                   color: Colors.white,
-                  shadowColor: Colors.black,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
