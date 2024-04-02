@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:watchdog/screens/onboarding/onboarding.dart';
 import 'pages/homepage.dart';
-import 'pages/login.dart';
 
 
 void main() {
