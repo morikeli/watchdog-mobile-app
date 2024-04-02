@@ -58,7 +58,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.white.withOpacity(0.9),
       appBar: AppBar(
         leading: Image.asset('assets/logo.png'),
         title: const Text(
@@ -78,8 +78,12 @@ class _HomepageState extends State<Homepage> {
               itemCount: reportedIncidents.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
+                  elevation: 1,
+                  borderOnForeground: true,
+                  surfaceTintColor: Colors.black,
                   margin: const EdgeInsets.all(5.0),
                   color: Colors.white,
+                  shadowColor: Colors.black,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -93,8 +97,8 @@ class _HomepageState extends State<Homepage> {
                                   size: 30.0,
                                 )
                               : Icon(
-                                  Icons.outlined_flag,
-                                  color: Colors.amber[600],
+                                  Icons.flag,
+                                  color: Colors.amber[300],
                                 ),
                           title: Text(
                             reportedIncidents[index].incidentType,
@@ -135,39 +139,56 @@ class _HomepageState extends State<Homepage> {
                 );
               }),
           ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (currentPage > 1) // show previous button
-                ElevatedButton(
-                  onPressed: () {
-                    currentPage--;
-                    fetchData(currentPage);
-                  },
-                  child: const Text('Previous'),
-                ),
-              const SizedBox(width: 10),
-              if (currentPage < totalPages) // show next button
-                ElevatedButton(
-                  onPressed: () {
-                    currentPage++;
-                    fetchData(currentPage);
-                  },
-                  child: const Text('Next'),
-                )
-            ],
-          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Report an incident',
-        backgroundColor: Colors.blue[900],
-        child: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.add),
-        ),
+      floatingActionButton: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {},
+            tooltip: 'Report an incident',
+            backgroundColor: Colors.blue[900],
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.add),
+            ),
+          ),
+          const SizedBox(height: 5.0),
+          Container(
+            margin: const EdgeInsets.only(left: 25.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (currentPage > 1) // show previous button
+                  FloatingActionButton(
+                    onPressed: () {},
+                    backgroundColor: Colors.blue.shade900,
+                    child: IconButton(
+                      onPressed: () {
+                        currentPage--;
+                        fetchData(currentPage);
+                      },
+                      icon: const Icon(Icons.chevron_left),
+                    ), 
+                  ),
+                const SizedBox(width: 10),
+                if (currentPage < totalPages) // show next button
+                  FloatingActionButton(
+                    onPressed: () {},
+                    backgroundColor: Colors.blue.shade900,
+                    child: IconButton(
+                      onPressed: () {
+                        currentPage++;
+                        fetchData(currentPage);
+                      },
+                      icon: const Icon(Icons.chevron_right),
+                    ),
+                  )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
