@@ -4,10 +4,9 @@ Watchdog is a mobile app to report road accidents and crimes.
 ## Demo
 1. Onboarding screen
 
-![Screenshot from 2024-04-02 13-33-17](https://github.com/morikeli/watchdog-mobile-app/assets/78599959/3ff0cccd-e303-46da-951e-e3b53e39e7cc)![Screenshot from 2024-04-02 13-33-26](https://github.com/morikeli/watchdog-mobile-app/assets/78599959/e50a1ed2-8e4f-40c4-b796-fca43f3bf732)
+![Screenshot1](https://github.com/morikeli/watchdog-mobile-app/assets/78599959/3ff0cccd-e303-46da-951e-e3b53e39e7cc)![Screenshot2](https://github.com/morikeli/watchdog-mobile-app/assets/78599959/e50a1ed2-8e4f-40c4-b796-fca43f3bf732)
 
 2. Homepage
-
   ![Screenshot from 2024-04-02 13-32-40](https://github.com/morikeli/watchdog-mobile-app/assets/78599959/47a40094-9ad2-4932-a074-835c7888f556)
 
 
