@@ -180,9 +180,7 @@ class _HomepageState extends State<Homepage> {
                   // map icon
                   IconButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const OSMMap()),
-                      );
+                      Navigator.pushReplacementNamed(context, '/map');
                     }, 
                     icon: const Icon(Icons.location_on_outlined, color: Colors.white),
                   ),
@@ -198,9 +196,7 @@ class _HomepageState extends State<Homepage> {
                   // wanted suspects icon
                   IconButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context, 
-                        MaterialPageRoute(builder: (context) => const WantedSuspects())
-                      );
+                      Navigator.pushReplacementNamed(context, '/suspects');
                     },
                     icon: const Icon(Icons.person_pin_outlined, color: Colors.white),
                   ),
