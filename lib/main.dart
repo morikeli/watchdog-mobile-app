@@ -19,11 +19,12 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '': (context) => const OnboardingScreen(),
+        '/splash': (context) => const SplashScreen(),
         '/home': (context) => const Homepage(),
         '/map': (context) => const OSMMap(),
         '/suspects': (context) => const WantedSuspects(),
       },
-      initialRoute: '',
+      initialRoute: '/splash',
       home: const Homepage(),
       debugShowCheckedModeBanner: false,
     );
