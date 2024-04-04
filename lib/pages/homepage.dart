@@ -137,54 +137,85 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-      floatingActionButton: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () {},
-            tooltip: 'Report an incident',
-            backgroundColor: Colors.blue[900],
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.add),
-            ),
-          ),
-          const SizedBox(height: 5.0),
-          Container(
-            margin: const EdgeInsets.only(left: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (currentPage > 1) // show previous button
-                  FloatingActionButton(
-                    onPressed: () {},
-                    backgroundColor: Colors.blue.shade900,
-                    child: IconButton(
-                      onPressed: () {
-                        currentPage--;
-                        fetchData(currentPage);
-                      },
-                      icon: const Icon(Icons.chevron_left),
-                    ), 
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.blue.shade900,
+        child: const Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue.shade900,
+        notchMargin: 4.5,
+        shape: const CircularNotchedRectangle(),
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // home icon
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/home');
+                    },
+                    icon: const Icon(Icons.home_outlined), 
+                    color: Colors.white
                   ),
-                const SizedBox(width: 10),
-                if (currentPage < totalPages) // show next button
-                  FloatingActionButton(
-                    onPressed: () {},
-                    backgroundColor: Colors.blue.shade900,
-                    child: IconButton(
-                      onPressed: () {
-                        currentPage++;
-                        fetchData(currentPage);
-                      },
-                      icon: const Icon(Icons.chevron_right),
-                    ),
-                  )
-              ],
+                  const Text('Home', style: TextStyle(color: Colors.white)),
+                ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(right: 30.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // map icon
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/map');
+                    }, 
+                    icon: const Icon(Icons.location_on_outlined, color: Colors.white),
+                  ),
+                  const Text('Map', style: TextStyle(color: Colors.white)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // wanted suspects icon
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/suspects');
+                    },
+                    icon: const Icon(Icons.person_pin_outlined, color: Colors.white),
+                  ),
+                  const Text('Suspects', style: TextStyle(color: Colors.white)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 1.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // profile icon
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.person_outline, color: Colors.white),
+                  ),
+                  const Text('Profile', style: TextStyle(color: Colors.white)),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

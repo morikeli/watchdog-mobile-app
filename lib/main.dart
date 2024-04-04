@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:watchdog/pages/map.dart';
+import 'package:watchdog/pages/suspects.dart';
 import 'package:watchdog/screens/onboarding/onboarding.dart';
 import 'pages/homepage.dart';
 
@@ -17,9 +19,11 @@ class MainApp extends StatelessWidget {
       routes: {
         '': (context) => const OnboardingScreen(),
         '/home': (context) => const Homepage(),
+        '/map': (context) => const OSMMap(),
+        '/suspects': (context) => const WantedSuspects(),
       },
       initialRoute: '',
-      home: Homepage(),
+      home: const Homepage(),
       debugShowCheckedModeBanner: false,
     );
   }
