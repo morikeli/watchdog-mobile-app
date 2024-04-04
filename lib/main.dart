@@ -19,9 +19,11 @@ class MainApp extends StatelessWidget {
       routes: {
         '': (context) => const OnboardingScreen(),
         '/home': (context) => const Homepage(),
+        '/map': (context) => const OSMMap(),
+        '/suspects': (context) => const WantedSuspects(),
       },
       initialRoute: '',
-      home: Homepage(),
+      home: const Homepage(),
       debugShowCheckedModeBanner: false,
     );
   }
