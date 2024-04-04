@@ -153,52 +153,71 @@ class _HomepageState extends State<Homepage> {
         color: Colors.blue.shade900,
         notchMargin: 4.5,
         shape: const CircularNotchedRectangle(),
-        child: const Row(
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(5.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // home icon
-                  Icon(Icons.home_outlined, color: Colors.white),
-                  Text('Home', style: TextStyle(color: Colors.white)),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.home_outlined), 
+                    color: Colors.white),
+                  const Text('Home', style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 30.0),
+              padding: const EdgeInsets.only(right: 30.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // map icon
-                  Icon(Icons.location_on_outlined, color: Colors.white),
-                  Text('Map', style: TextStyle(color: Colors.white)),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => const OSMMap()),
+                      );
+                    }, 
+                    icon: const Icon(Icons.location_on_outlined, color: Colors.white),
+                  ),
+                  const Text('Map', style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 30.0),
+              padding: const EdgeInsets.only(left: 30.0),
               child: Column(
-                
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // wanted suspects icon
-                  Icon(Icons.person_pin_outlined, color: Colors.white),
-                  Text('Suspects', style: TextStyle(color: Colors.white)),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context, 
+                        MaterialPageRoute(builder: (context) => const WantedSuspects())
+                      );
+                    },
+                    icon: const Icon(Icons.person_pin_outlined, color: Colors.white),
+                  ),
+                  const Text('Suspects', style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 1.0),
+              padding: const EdgeInsets.only(left: 1.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // profile icon
-                  Icon(Icons.person_outline, color: Colors.white),
-                  Text('Profile', style: TextStyle(color: Colors.white)),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.person_outline, color: Colors.white),
+                  ),
+                  const Text('Profile', style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
