@@ -141,54 +141,11 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-      floatingActionButton: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () {},
-            tooltip: 'Report an incident',
-            backgroundColor: Colors.blue[900],
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.add),
-            ),
-          ),
-          const SizedBox(height: 5.0),
-          Container(
-            margin: const EdgeInsets.only(left: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (currentPage > 1) // show previous button
-                  FloatingActionButton(
-                    onPressed: () {},
-                    backgroundColor: Colors.blue.shade900,
-                    child: IconButton(
-                      onPressed: () {
-                        currentPage--;
-                        fetchData(currentPage);
-                      },
-                      icon: const Icon(Icons.chevron_left),
-                    ), 
-                  ),
-                const SizedBox(width: 10),
-                if (currentPage < totalPages) // show next button
-                  FloatingActionButton(
-                    onPressed: () {},
-                    backgroundColor: Colors.blue.shade900,
-                    child: IconButton(
-                      onPressed: () {
-                        currentPage++;
-                        fetchData(currentPage);
-                      },
-                      icon: const Icon(Icons.chevron_right),
-                    ),
-                  )
-              ],
-            ),
-          ),
-        ],
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.blue.shade900,
+        child: const Icon(Icons.add),
       ),
     );
   }
