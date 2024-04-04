@@ -13,9 +13,12 @@ class _WantedSuspectsState extends State<WantedSuspects> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('assets/logo.png'),
+        leading: IconButton(
+          onPressed: () => Navigator.popAndPushNamed(context, '/home'),
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text(
-          'Watchdog',
+          'Wanted suspects',
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
