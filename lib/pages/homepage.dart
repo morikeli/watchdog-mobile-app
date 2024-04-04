@@ -162,9 +162,12 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   // home icon
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/home');
+                    },
                     icon: const Icon(Icons.home_outlined), 
-                    color: Colors.white),
+                    color: Colors.white
+                  ),
                   const Text('Home', style: TextStyle(color: Colors.white)),
                 ],
               ),
