@@ -6,6 +6,8 @@ import 'dart:convert';
 
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -64,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       });
       // Authentication successful, navigate to next screen
       Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        MaterialPageRoute(builder: (context) => const Homepage()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
