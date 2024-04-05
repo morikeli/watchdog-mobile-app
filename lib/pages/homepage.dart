@@ -59,6 +59,7 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       backgroundColor: Colors.white.withOpacity(0.9),
       appBar: AppBar(
+        backgroundColor: Colors.blue[900],
         leading: Image.asset('assets/logo.png'),
         title: const Text(
           'Watchdog',
