@@ -217,7 +217,9 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   // profile icon
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/profile');
+                    },
                     icon: const Icon(Icons.person_outline, color: Colors.white),
                   ),
                   const Text('Profile', style: TextStyle(color: Colors.white)),
