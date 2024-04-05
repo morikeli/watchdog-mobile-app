@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watchdog/pages/map.dart';
+import 'package:watchdog/pages/profile.dart';
 import 'package:watchdog/pages/suspects.dart';
 import 'package:watchdog/screens/onboarding/onboarding.dart';
 import 'package:watchdog/screens/onboarding/splash_screen.dart';
