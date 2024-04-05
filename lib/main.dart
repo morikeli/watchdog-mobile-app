@@ -24,6 +24,7 @@ class MainApp extends StatelessWidget {
         '/home': (context) => const Homepage(),
         '/map': (context) => const OSMMap(),
         '/suspects': (context) => const WantedSuspects(),
+        '/profile': (context) => const ProfileScreen(),
       },
       initialRoute: '/splash',
       home: const Homepage(),
