@@ -6,6 +6,8 @@ import 'dart:convert';
 
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -64,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       });
       // Authentication successful, navigate to next screen
       Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        MaterialPageRoute(builder: (context) => const Homepage()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -88,7 +90,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text('Login'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -97,9 +101,35 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Text(
+                'Welcome back', 
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                  color: Colors.black54,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _usernameController,
-                decoration: const InputDecoration(labelText: 'Username'),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.person_outline),
+                  prefixIconColor: Colors.grey,
+                  labelText: 'Username',
+                  hintText: 'Enter your username',
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(28),
+                    borderSide: const BorderSide(color: Colors.grey),
+                    gapPadding: 10,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(28),
+                    borderSide: const BorderSide(color: Colors.grey),
+                    gapPadding: 10,
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter username';
@@ -107,9 +137,26 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _passwordController,
-                decoration: const InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.lock_outline),
+                  prefixIconColor: Colors.grey,
+                  labelText: 'Password',
+                  hintText: 'Enter your password',
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(28),
+                    borderSide: const BorderSide(color: Colors.grey),
+                    gapPadding: 10,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(28),
+                    borderSide: const BorderSide(color: Colors.grey),
+                    gapPadding: 10,
+                  ),
+                ),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -119,13 +166,20 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _login();
-                  }
-                },
-                child: const Text('Login'),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.blue.shade900
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _login();
+                    }
+                  },
+                  child: const Text('Login', style: TextStyle(color: Colors.white)),
+                ),
               ),
             ],
           ),

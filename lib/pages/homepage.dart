@@ -51,7 +51,6 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     fetchData(currentPage);
     _scrollController.addListener(_scrollListener);
-    // TODO: implement initState
     super.initState();
   }
 
@@ -60,6 +59,7 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       backgroundColor: Colors.white.withOpacity(0.9),
       appBar: AppBar(
+        backgroundColor: Colors.blue[900],
         leading: Image.asset('assets/logo.png'),
         title: const Text(
           'Watchdog',
@@ -68,7 +68,13 @@ class _HomepageState extends State<Homepage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.blue[900],
+        titleSpacing: 0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications_none_rounded),
+          )
+        ],
       ),
       body: Column(
         children: [
@@ -207,7 +213,9 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   // profile icon
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/profile');
+                    },
                     icon: const Icon(Icons.person_outline, color: Colors.white),
                   ),
                   const Text('Profile', style: TextStyle(color: Colors.white)),

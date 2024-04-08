@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:watchdog/pages/homepage.dart';
+import 'package:watchdog/pages/login.dart';
 import 'package:watchdog/screens/onboarding/onboarding_view.dart';
 
 
@@ -105,11 +105,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       height: 55,
       child: TextButton(
         onPressed: () {
-          Navigator.pushReplacement(context, 
-            MaterialPageRoute(
-              builder: ((context) => Homepage())
-            )
-          );
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
         }, 
         child: const Text(
           'Get started',
