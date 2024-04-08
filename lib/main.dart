@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
         '/profile': (context) => const ProfileScreen(),
       },
       initialRoute: '/splash',
-      home: const Homepage(),
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }
