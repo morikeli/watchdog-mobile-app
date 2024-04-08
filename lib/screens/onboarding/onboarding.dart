@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:watchdog/pages/homepage.dart';
+import 'package:watchdog/pages/login.dart';
 import 'package:watchdog/screens/onboarding/onboarding_view.dart';
 
 
