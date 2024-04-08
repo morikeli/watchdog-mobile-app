@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watchdog/pages/login.dart';
 import 'package:watchdog/pages/map.dart';
 import 'package:watchdog/pages/profile.dart';
 import 'package:watchdog/pages/suspects.dart';
@@ -20,6 +21,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '': (context) => const OnboardingScreen(),
+        '/login': (context) => const LoginPage(),
         '/splash': (context) => const SplashScreen(),
         '/home': (context) => const Homepage(),
         '/map': (context) => const OSMMap(),
