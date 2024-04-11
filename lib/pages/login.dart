@@ -16,31 +16,11 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  String authURL = '$api/api-auth/login/';
-  String _csrfToken = '';
+  String authURL = '$api/api/auth/login';
 
   @override
   void initState() {
     super.initState();
-    _fetchCsrfToken();
-  }
-
-  Future<void> _fetchCsrfToken() async {
-    try {
-      final response = await http.get(
-        Uri.parse(authURL), // Adjust the URL as needed
-      );
-      if (response.statusCode == 200) {
-        // Extract CSRF token from the response
-        setState(() {
-          _csrfToken = response.headers['csrf-token'] ?? '';
-        });
-      } else {
-        throw Exception('Failed to fetch CSRF token');
-      }
-    } catch (e) {
-      print('Error fetching CSRF token: $e');
-    }
   }
 
   Future<void> _login() async {
