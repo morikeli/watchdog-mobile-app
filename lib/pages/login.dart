@@ -32,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
       headers: <String, String>{
         'Authorization':'Bearer ${base64Encode(utf8.encode('$username:$password'))}',
         'Content-Type': 'application/json',
-        'X-CSRFToken': _csrfToken, // Include CSRF token in the headers
       },
       body: jsonEncode(<String, String>{
         'username': username,
