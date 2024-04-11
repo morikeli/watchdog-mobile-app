@@ -40,9 +40,6 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     if (response.statusCode == 200) {
-      setState(() {
-        _csrfToken = response.headers['csrf-token'] ?? '';
-      });
       // Authentication successful, navigate to next screen
       Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context) => const Homepage()),
