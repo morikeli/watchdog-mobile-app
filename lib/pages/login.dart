@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                 'Welcome back', 
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
+                  fontSize: 40.0,
                   color: Colors.black54,
                 ),
                 textAlign: TextAlign.center,
