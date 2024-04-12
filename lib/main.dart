@@ -20,6 +20,13 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          color: kAppBarColor,
+        ),
+        primaryColor: kPrimaryColor,
+      ),
       routes: {
         '': (context) => const OnboardingScreen(),
         '/login': (context) => const LoginPage(),
