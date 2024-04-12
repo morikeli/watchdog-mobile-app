@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:watchdog/constants/api.dart';
 import 'package:http/http.dart' as http;
+import 'package:watchdog/constants/colors.dart';
 import '../models/incidents.dart';
 
 class Homepage extends StatefulWidget {
@@ -57,9 +58,8 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white.withOpacity(0.9),
+      backgroundColor: kScaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
         leading: Image.asset('assets/logo.png'),
         title: const Text(
           'Watchdog',
@@ -163,12 +163,11 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // home icon
-                  IconButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/home');
                     },
-                    icon: const Icon(Icons.home_outlined), 
-                    color: Colors.white
+                    child: const Icon(Icons.home_outlined, color: Colors.white),
                   ),
                   const Text('Home', style: TextStyle(color: Colors.white)),
                 ],
@@ -180,11 +179,11 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // map icon
-                  IconButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/map');
                     }, 
-                    icon: const Icon(Icons.location_on_outlined, color: Colors.white),
+                    child: const Icon(Icons.location_on_outlined, color: Colors.white),
                   ),
                   const Text('Map', style: TextStyle(color: Colors.white)),
                 ],
@@ -196,11 +195,11 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // wanted suspects icon
-                  IconButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/suspects');
                     },
-                    icon: const Icon(Icons.person_pin_outlined, color: Colors.white),
+                    child: const Icon(Icons.person_pin_outlined, color: Colors.white),
                   ),
                   const Text('Suspects', style: TextStyle(color: Colors.white)),
                 ],
@@ -212,11 +211,11 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // profile icon
-                  IconButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/profile');
                     },
-                    icon: const Icon(Icons.person_outline, color: Colors.white),
+                    child: const Icon(Icons.person_outline, color: Colors.white),
                   ),
                   const Text('Profile', style: TextStyle(color: Colors.white)),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watchdog/constants/colors.dart';
 import 'package:watchdog/pages/login.dart';
 import 'package:watchdog/pages/map.dart';
 import 'package:watchdog/pages/profile.dart';
@@ -19,6 +20,13 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          color: kAppBarColor,
+        ),
+        primaryColor: kPrimaryColor,
+      ),
       routes: {
         '': (context) => const OnboardingScreen(),
         '/login': (context) => const LoginPage(),

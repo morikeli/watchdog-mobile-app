@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watchdog/constants/colors.dart';
 
 
 class WantedSuspects extends StatefulWidget {
@@ -12,6 +13,7 @@ class _WantedSuspectsState extends State<WantedSuspects> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kScaffoldBackgroundColor,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.popAndPushNamed(context, '/home'),
