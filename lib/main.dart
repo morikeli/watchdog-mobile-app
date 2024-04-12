@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watchdog/constants/colors.dart';
 import 'package:watchdog/pages/login.dart';
 import 'package:watchdog/pages/map.dart';
 import 'package:watchdog/pages/profile.dart';
