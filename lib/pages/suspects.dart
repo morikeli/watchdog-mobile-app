@@ -17,6 +17,7 @@ class _WantedSuspectsState extends State<WantedSuspects> {
           onPressed: () => Navigator.popAndPushNamed(context, '/home'),
           icon: const Icon(Icons.arrow_back),
         ),
+        centerTitle: true,
         title: const Text(
           'Wanted suspects',
           style: TextStyle(
