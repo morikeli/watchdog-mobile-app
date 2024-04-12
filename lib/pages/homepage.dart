@@ -167,12 +167,11 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // home icon
-                  IconButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/home');
                     },
-                    icon: const Icon(Icons.home_outlined), 
-                    color: Colors.white
+                    child: const Icon(Icons.home_outlined, color: Colors.white),
                   ),
                   const Text('Home', style: TextStyle(color: Colors.white)),
                 ],
@@ -184,11 +183,11 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // map icon
-                  IconButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/map');
                     }, 
-                    icon: const Icon(Icons.location_on_outlined, color: Colors.white),
+                    child: const Icon(Icons.location_on_outlined, color: Colors.white),
                   ),
                   const Text('Map', style: TextStyle(color: Colors.white)),
                 ],
@@ -200,11 +199,11 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // wanted suspects icon
-                  IconButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/suspects');
                     },
-                    icon: const Icon(Icons.person_pin_outlined, color: Colors.white),
+                    child: const Icon(Icons.person_pin_outlined, color: Colors.white),
                   ),
                   const Text('Suspects', style: TextStyle(color: Colors.white)),
                 ],
@@ -216,11 +215,11 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // profile icon
-                  IconButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/profile');
                     },
-                    icon: const Icon(Icons.person_outline, color: Colors.white),
+                    child: const Icon(Icons.person_outline, color: Colors.white),
                   ),
                   const Text('Profile', style: TextStyle(color: Colors.white)),
                 ],
