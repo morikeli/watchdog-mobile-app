@@ -58,9 +58,8 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white.withOpacity(0.9),
+      backgroundColor: kScaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
         leading: Image.asset('assets/logo.png'),
         title: const Text(
           'Watchdog',
