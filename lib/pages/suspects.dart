@@ -38,11 +38,12 @@ class _WantedSuspectsState extends State<WantedSuspects> {
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CircleAvatar(
-                              backgroundImage: AssetImage('assets/profile-pic.jpg'),
+                              backgroundColor: Colors.grey.shade300,
+                              backgroundImage: const AssetImage('assets/profile-pic.jpg'),
                               radius: 70.0,
                             ),
                           ],
