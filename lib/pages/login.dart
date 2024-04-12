@@ -16,31 +16,11 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  String authURL = '$api/api-auth/login/';
-  String _csrfToken = '';
+  String authURL = '$api/api/auth/login';
 
   @override
   void initState() {
     super.initState();
-    _fetchCsrfToken();
-  }
-
-  Future<void> _fetchCsrfToken() async {
-    try {
-      final response = await http.get(
-        Uri.parse(authURL), // Adjust the URL as needed
-      );
-      if (response.statusCode == 200) {
-        // Extract CSRF token from the response
-        setState(() {
-          _csrfToken = response.headers['csrf-token'] ?? '';
-        });
-      } else {
-        throw Exception('Failed to fetch CSRF token');
-      }
-    } catch (e) {
-      print('Error fetching CSRF token: $e');
-    }
   }
 
   Future<void> _login() async {
@@ -52,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
       headers: <String, String>{
         'Authorization':'Bearer ${base64Encode(utf8.encode('$username:$password'))}',
         'Content-Type': 'application/json',
-        'X-CSRFToken': _csrfToken, // Include CSRF token in the headers
       },
       body: jsonEncode(<String, String>{
         'username': username,
@@ -61,9 +40,6 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     if (response.statusCode == 200) {
-      setState(() {
-        _csrfToken = response.headers['csrf-token'] ?? '';
-      });
       // Authentication successful, navigate to next screen
       Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context) => const Homepage()),
@@ -105,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                 'Welcome back', 
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
+                  fontSize: 40.0,
                   color: Colors.black54,
                 ),
                 textAlign: TextAlign.center,
