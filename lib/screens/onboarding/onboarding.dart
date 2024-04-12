@@ -67,7 +67,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(controller.items[index].image, height: 350.0),
+                  Image.asset(controller.items[index].image, height: 350.0, fit: BoxFit.contain),
                   const SizedBox(height: 5.0),
                   Text(
                     controller.items[index].title,
