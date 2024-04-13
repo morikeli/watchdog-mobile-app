@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
           showCloseIcon: true,
           backgroundColor: Colors.red[100],
           content: Text(
-            'Authentication failed!',
+            'Authentication failed! Password and email maybe case-sensitive.',
             style: TextStyle(
               color: Colors.red[900],
               fontWeight: FontWeight.bold
