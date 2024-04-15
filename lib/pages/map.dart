@@ -24,18 +24,34 @@ class _OSMMapState extends State<OSMMap> {
   }
 
   Future<void> fetchCoordinates() async {
-    final response = await http.get(Uri.parse('$api/incident/accidents'));
+    final response = await http.get(Uri.parse('$api/api/incident/accidents'));
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      setState(() {
-        coordinates = List<LatLng>.from(data.map((item) => LatLng(item['location']['latitude'], item['location']['longitude'])));      
-        print('Coordinates: $coordinates');
-      });
+      Map<String, dynamic> data = json.decode(response.body);
+      List<dynamic> geoLocation = data['results'];
+
+      for (var markerCoord in geoLocation) {
+        double latitude = markerCoord['location']['latitude'];
+        double longitude = markerCoord['location']['longitude'];
+
+        setState(() {
+          coordinates.add(
+            Marker(
+              point: LatLng(latitude, longitude),
+              child: const Icon(
+                Icons.location_on_sharp, 
+                color: Colors.red,
+              )
+            )
+          );
+        });
+      }
     } else {
       throw Exception('Failed to load coordinates');
     }
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
