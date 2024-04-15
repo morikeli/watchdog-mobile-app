@@ -25,6 +25,9 @@ class MainApp extends StatelessWidget {
           centerTitle: true,
           color: kAppBarColor,
         ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: kPrimaryColor,
+        ),
         primaryColor: kPrimaryColor,
       ),
       routes: {
