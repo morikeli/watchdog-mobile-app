@@ -51,51 +51,79 @@ class _OSMMapState extends State<OSMMap> {
     }
   }
 
+  void zoomIn() {
+    _mapController.move(_mapController.camera.center, _mapController.camera.zoom + 1);
+  }
+
+  void zoomOut() {
+    _mapController.move(_mapController.camera.center, _mapController.camera.zoom - 1);
+  }
   
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.popAndPushNamed(context, '/home'),
-          icon: const Icon(Icons.arrow_back),
+    return Stack(
+      children: [
+        Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () => Navigator.popAndPushNamed(context, '/home'),
+            icon: const Icon(Icons.arrow_back),
+          ),
+          title: const Text(
+            'Map',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          backgroundColor: Colors.blue[900],
         ),
-        title: const Text(
-          'Map',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
+      
+        body: FlutterMap(
+          mapController: _mapController,
+            options: const MapOptions(
+              initialCenter: LatLng(0.0236, 37.9062),
+              initialZoom: 8,
+              minZoom: 7,
+              maxZoom: 14,
+              interactionOptions: InteractionOptions(
+                enableScrollWheel: false,
+                flags: InteractiveFlag.all & ~InteractiveFlag.rotate
+              )
+            ),
+            children: [
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                userAgentPackageName: 'dev.fleatflet.flutter_map.example',
+              ),
+              MarkerLayer(
+                rotate: false,
+                markers: coordinates,
+              ),
+              
+              
+            ],
+        ),
+      ),
+      Positioned(
+          bottom: 10,
+          right: 10,
+          child: Column(
+            children: [
+              FloatingActionButton(
+                onPressed: zoomIn,
+                child: const Icon(Icons.add),
+              ),
+              const SizedBox(height: 10),
+              FloatingActionButton(
+                onPressed: zoomOut,
+                child: const Icon(Icons.remove),
+              )
+            ],
           ),
         ),
-        backgroundColor: Colors.blue[900],
-      ),
-    
-      body: FlutterMap(
-        mapController: _mapController,
-          options: const MapOptions(
-            initialCenter: LatLng(0.0236, 37.9062),
-            initialZoom: 8,
-            minZoom: 7,
-            maxZoom: 14,
-            interactionOptions: InteractionOptions(
-              enableScrollWheel: false,
-              flags: InteractiveFlag.all & ~InteractiveFlag.rotate
-            )
-          ),
-          children: [
-            TileLayer(
-              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              userAgentPackageName: 'dev.fleatflet.flutter_map.example',
-            ),
-            MarkerLayer(
-              rotate: false,
-              markers: coordinates,
-            ),
-            
-            
-          ],
-      ),
+      ]
     );
   }
 }
