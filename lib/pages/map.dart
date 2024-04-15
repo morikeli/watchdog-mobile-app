@@ -70,29 +70,30 @@ class _OSMMapState extends State<OSMMap> {
         ),
         backgroundColor: Colors.blue[900],
       ),
-      
+    
       body: FlutterMap(
+        mapController: _mapController,
           options: const MapOptions(
             initialCenter: LatLng(0.0236, 37.9062),
             initialZoom: 8,
             minZoom: 7,
             maxZoom: 14,
+            interactionOptions: InteractionOptions(
+              enableScrollWheel: false,
+              flags: InteractiveFlag.all & ~InteractiveFlag.rotate
+            )
           ),
           children: [
             TileLayer(
-              urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
               userAgentPackageName: 'dev.fleatflet.flutter_map.example',
             ),
             MarkerLayer(
               rotate: false,
-              markers: coordinates.expand((LatLng point) => {
-                Marker(
-                  rotate: false,
-                  point: point,
-                  child: const Icon(Icons.location_on_outlined, color: Colors.red),
-                )
-              }).toList()
+              markers: coordinates,
             ),
+            
+            
           ],
       ),
     );
