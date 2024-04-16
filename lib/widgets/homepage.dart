@@ -89,67 +89,91 @@ class _HomepageWidgetState extends State<HomepageWidget> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              itemCount: reportedIncidents.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  margin: const EdgeInsets.all(5.0),
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          leading: reportedIncidents[index].incidentType ==
-                                  "Road accident"
-                              ? Icon(
-                                  Icons.car_crash,
-                                  color: Colors.red[700],
-                                  size: 30.0,
-                                )
-                              : Icon(
-                                  Icons.flag,
-                                  color: Colors.amber[300],
-                                ),
-                          title: Text(
-                            reportedIncidents[index].incidentType,
-                            style: const TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          subtitle: Text(
-                            reportedIncidents[index].description,
-                            style: const TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 70.0, bottom: 10.0),
-                              child: Text(
-                                '${reportedIncidents[index].incidentDate} ${reportedIncidents[index].incidentTime}',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black38,
-                                ),
+            child: RefreshIndicator.adaptive(
+              onRefresh: () async {
+                try {
+                  String apiURL = '$api/reported-incidents/?page=1';
+                  http.Response response = await http.get(Uri.parse(apiURL));
+                  var data = json.decode(response.body);
+                  List<dynamic> results = data['results'];
+                  totalPages = (data['count'] / 10).ceil();
+                  
+                  setState(() {
+                    reportedIncidents = results.map((item) => Incidents.fromJSON(item)).toList();
+                  });
+                } catch (e) {
+                  Fluttertoast.showToast(
+                    msg: "An error occured! Please try again later.",
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.TOP,
+                    backgroundColor: Colors.red.shade400,
+                    textColor: Colors.white,
+                    fontSize: 20.0
+                  );
+                }
+              },
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount: reportedIncidents.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    margin: const EdgeInsets.all(5.0),
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            leading: reportedIncidents[index].incidentType ==
+                                    "Road accident"
+                                ? Icon(
+                                    Icons.car_crash,
+                                    color: Colors.red[700],
+                                    size: 30.0,
+                                  )
+                                : Icon(
+                                    Icons.flag,
+                                    color: Colors.amber[300],
+                                  ),
+                            title: Text(
+                              reportedIncidents[index].incidentType,
+                              style: const TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
-                      ],
+                            subtitle: Text(
+                              reportedIncidents[index].description,
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 8.0),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 70.0, bottom: 10.0),
+                                child: Text(
+                                  '${reportedIncidents[index].incidentDate} ${reportedIncidents[index].incidentTime}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black38,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+            ),
           ),
         ],
       ),
