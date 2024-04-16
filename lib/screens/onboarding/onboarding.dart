@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:watchdog/constants/colors.dart';
 import 'package:watchdog/pages/login.dart';
 import 'package:watchdog/screens/onboarding/onboarding_view.dart';
 
@@ -29,13 +30,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 onPressed: () {
                   pageController.jumpToPage(controller.items.length - 1);
                 }, 
-                child: const Text('Skip'),
+                child: const Text('Skip', style: TextStyle(color: kPrimaryColor)),
               ),
               SmoothPageIndicator(
                 controller: pageController,
                 count: controller.items.length,
-                effect: WormEffect(
-                  activeDotColor: Colors.blue.shade900,
+                effect: const WormEffect(
+                  activeDotColor: kPrimaryColor,
                 ),
                 onDotClicked: (index) {
                   pageController.animateToPage(index,
@@ -52,7 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     curve: Curves.easeIn,
                   );
                 }, 
-                child: const Text('Next'),
+                child: const Text('Next', style: TextStyle(color: kPrimaryColor)),
               ),
             ],
           ),

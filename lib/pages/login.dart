@@ -94,6 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: const Icon(Icons.person_outline),
                   prefixIconColor: Colors.grey,
                   labelText: 'Username',
+                  labelStyle: const TextStyle(color: kPrimaryColor),
                   hintText: 'Enter your username',
                   contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
                   enabledBorder: OutlineInputBorder(
@@ -121,6 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: const Icon(Icons.lock_outline),
                   prefixIconColor: Colors.grey,
                   labelText: 'Password',
+                  labelStyle: const TextStyle(color: kPrimaryColor),
                   hintText: 'Enter your password',
                   contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
                   enabledBorder: OutlineInputBorder(
@@ -147,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.blue.shade900
+                  color: kPrimaryColor
                 ),
                 child: TextButton(
                   onPressed: () {
