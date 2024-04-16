@@ -21,12 +21,22 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        useMaterial3: true,
         appBarTheme: const AppBarTheme(
           centerTitle: true,
           color: kAppBarColor,
+          iconTheme: IconThemeData(
+            color: Color(0xFFFFFFFF),
+          ),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold
+          ),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: kPrimaryColor,
+          foregroundColor: Colors.white
         ),
         primaryColor: kPrimaryColor,
       ),
