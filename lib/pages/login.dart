@@ -94,8 +94,8 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: const Icon(Icons.person_outline),
                   prefixIconColor: Colors.grey,
                   labelText: 'Username',
-                  labelStyle: const TextStyle(color: kPrimaryColor),
                   hintText: 'Enter your username',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(28),
@@ -122,8 +122,8 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: const Icon(Icons.lock_outline),
                   prefixIconColor: Colors.grey,
                   labelText: 'Password',
-                  labelStyle: const TextStyle(color: kPrimaryColor),
                   hintText: 'Enter your password',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(28),
