@@ -34,12 +34,33 @@ class MainApp extends StatelessWidget {
             fontWeight: FontWeight.bold
           ),
         ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: kAppBarColor,
+          selectedIconTheme: IconThemeData(
+            color: kIconColor,
+          ),
+          selectedItemColor: kTextColor,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: kTextColor
+        ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: kPrimaryColor,
-          foregroundColor: Colors.white,
+          foregroundColor: kIconColor,
           shape: CircleBorder()
         ),
         primaryColor: kPrimaryColor,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+              kPrimaryColor
+            ),
+            foregroundColor:  MaterialStateProperty.all<Color>(
+              kTextColor
+            )
+          )
+        ),
       ),
       routes: {
         '': (context) => const OnboardingScreen(),
