@@ -24,30 +24,27 @@ class _OSMMapState extends State<OSMMap> {
   }
 
   Future<void> fetchCoordinates() async {
-    final response = await http.get(Uri.parse('$api/api/incident/accidents'));
+    final response = await http.get(Uri.parse('$api/incidents/location'));
 
     if (response.statusCode == 200) {
-      Map<String, dynamic> data = json.decode(response.body);
-      List<dynamic> geoLocation = data['results'];
+      List<dynamic> data = json.decode(response.body);
+      
+      for (var markerCoord in data) {
+        double latitude = markerCoord['latitude'];
+        double longitude = markerCoord['longitude'];
 
-      for (var markerCoord in geoLocation) {
-        double latitude = markerCoord['location']['latitude'];
-        double longitude = markerCoord['location']['longitude'];
-
-        setState(() {
-          coordinates.add(
-            Marker(
-              point: LatLng(latitude, longitude),
-              child: const Icon(
-                Icons.location_on_sharp, 
-                color: Colors.red,
-              )
+        coordinates.add(
+          Marker(
+            point: LatLng(latitude, longitude),
+            child: const Icon(
+              Icons.location_on_sharp, 
+              color: Colors.red,
             )
-          );
-        });
+          )
+        );
       }
     } else {
-      throw Exception('Failed to load coordinates');
+      throw Exception('Failed to load coordinates - status code: ${response.statusCode}');
     }
   }
 
@@ -101,8 +98,7 @@ class _OSMMapState extends State<OSMMap> {
                 rotate: false,
                 markers: coordinates,
               ),
-              
-              
+                            
             ],
         ),
       ),
