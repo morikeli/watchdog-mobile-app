@@ -3,7 +3,6 @@ class Incidents {
   String incidentDate;
   String incidentTime;
   String description;
-  String severityLevel;
   String reportedBy;
   String dateReported;
 
@@ -12,7 +11,6 @@ class Incidents {
     required this.incidentDate,
     required this.incidentTime,
     required this.description,
-    required this.severityLevel,
     required this.reportedBy,
     required this.dateReported,
   });
@@ -23,7 +21,6 @@ class Incidents {
       incidentDate: json['incident_date'] ?? "",
       incidentTime: json['incident_time'] ?? "",
       description: json['description'] ?? "",
-      severityLevel: json['severity_level'],
       reportedBy: json['reported_by'] ?? "",
       dateReported: json['date_reported'],
     );
