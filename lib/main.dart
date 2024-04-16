@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
           centerTitle: true,
           color: kAppBarColor,
           iconTheme: IconThemeData(
-            color: Color(0xFFFFFFFF),
+            color: kIconColor,
           ),
           titleTextStyle: TextStyle(
             color: Colors.white,
