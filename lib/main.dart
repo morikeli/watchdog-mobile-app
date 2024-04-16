@@ -36,7 +36,8 @@ class MainApp extends StatelessWidget {
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: kPrimaryColor,
-          foregroundColor: Colors.white
+          foregroundColor: Colors.white,
+          shape: CircleBorder()
         ),
         primaryColor: kPrimaryColor,
       ),
