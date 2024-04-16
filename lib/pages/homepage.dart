@@ -33,7 +33,7 @@ class _HomepageState extends State<Homepage> {
 
   void fetchData(int page) async {
     try {
-      String apiURL = '$api/api/reported-incidents/?page=$currentPage';
+      String apiURL = '$api/reported-incidents/?page=$currentPage';
       http.Response response = await http.get(Uri.parse(apiURL));
       var data = json.decode(response.body);
       List<dynamic> results = data['results'];

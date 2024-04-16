@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  String authURL = '$api/api/auth/login';
+  String authURL = '$api/auth/login';
 
   @override
   void initState() {
