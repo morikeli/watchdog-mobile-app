@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:watchdog/components/suspects_card.dart';
+import 'package:watchdog/models/suspects.dart';
 import 'package:watchdog/constants/colors.dart';
+import 'package:watchdog/constants/api.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 
 
 class WantedSuspects extends StatefulWidget {
@@ -10,6 +17,41 @@ class WantedSuspects extends StatefulWidget {
 }
 
 class _WantedSuspectsState extends State<WantedSuspects> {
+  List<Suspects> wantedSuspects = [];
+  int currentPage = 1;
+  int totalPages = 1;
+  
+  
+  void fetchSuspectData(int page) async {
+    try {
+      String apiURL = '$api/wanted-suspects?page=$page';
+      http.Response response = await http.get(Uri.parse(apiURL));
+      var data = json.decode(response.body);
+      List<dynamic> results = data['results'];
+      totalPages = (data['count'] / 10).ceil();
+      
+      setState(() {
+        wantedSuspects = results.map((item) => Suspects.fromJSON(item)).toList();
+      });
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: 'Please check your internet connection',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.red.shade600,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      print('Error is $e');
+    }
+  }
+
+  @override
+  void initState() {
+    fetchSuspectData(currentPage);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,180 +74,25 @@ class _WantedSuspectsState extends State<WantedSuspects> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  margin: const EdgeInsets.all(8.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.grey.shade300,
-                              backgroundImage: const AssetImage('assets/profile-pic.jpg'),
-                              radius: 70.0,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8.0),
-                        Table(
-                          border: TableBorder.all(),
-                          children: const [
-                            TableRow(
-                              children: [
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Name', 
-                                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)
-                                    ),
-                                  )
-                                ),
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Suspect 1', 
-                                      textAlign: TextAlign.end,
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  )
-                                ),
-                              ]
-                            ),
-                            TableRow(
-                              children: [
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Nickname',
-                                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ),
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Nightmare',
-                                      textAlign: TextAlign.end,
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  )
-                                ),
-
-                              ]
-                            ),
-                            TableRow(
-                              children: [
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Gender',
-                                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ),
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Male',
-                                      textAlign: TextAlign.end,
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  )
-                                ),
-                              ]
-                            ),
-                            TableRow(
-                              children: [
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Wanted for',
-                                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ),
-                                TableCell(
-                                  child: Text(
-                                    'Drug trafficking',
-                                    textAlign: TextAlign.end,
-                                    style: TextStyle(fontSize: 16),
-                                  )
-                                ),
-                              ]
-                            ),
-                            TableRow(
-                              children: [
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Last seen location',
-                                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ),
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Migori, Kenya',
-                                      textAlign: TextAlign.end,
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  )
-                                ),
-                              ]
-                            ),
-                            TableRow(
-                              children: [
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Suspect status',
-                                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ),
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'Hiding',
-                                      textAlign: TextAlign.end,
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  )
-                                ),
-                              ]
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10.0),
-                        const Text(
-                          'Bounty: Kshs. 400, 000/=',
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+            child: RefreshIndicator.adaptive(
+              onRefresh: () async {
+                fetchSuspectData(1);
               },
+              child: ListView.builder(
+                itemCount: wantedSuspects.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return SuspectsCard(
+                    suspectName: wantedSuspects[index].name,
+                    suspectAlias: wantedSuspects[index].nickname,
+                    suspectGender: wantedSuspects[index].gender,
+                    suspectCrime: wantedSuspects[index].crime,
+                    suspectBounty: wantedSuspects[index].bounty,
+                    suspectLastSeenLocation: wantedSuspects[index].lastSeenLocation,
+                    suspectCurrentStatus: wantedSuspects[index].status,
+                    suspectImage: "",
+                  );
+                },
+              ),
             ),
           )
         ],
