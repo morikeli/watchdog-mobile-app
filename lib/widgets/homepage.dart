@@ -20,6 +20,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
   int totalPages = 1;
   List<Incidents> reportedIncidents = [];
   final ScrollController _scrollController = ScrollController();
+  late Future<List<Incidents>> _incidentFutureData = fetchData(currentPage);
 
   void _scrollListener() {
     if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
@@ -33,7 +34,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
     }
   }
 
-  void fetchData(int page) async {
+  Future<List<Incidents>> fetchData(int page) async {
     try {
       String apiURL = '$api/reported-incidents/?page=$page';
       http.Response response = await http.get(Uri.parse(apiURL));
@@ -41,10 +42,9 @@ class _HomepageWidgetState extends State<HomepageWidget> {
       List<dynamic> results = data['results'];
       totalPages = (data['count'] / 10).ceil();
       
-      setState(() {
-        reportedIncidents = results.map((item) => Incidents.fromJSON(item)).toList();
-      });
-    } catch (httpClientException) {
+      reportedIncidents = results.map((item) => Incidents.fromJSON(item)).toList();
+      return reportedIncidents;
+    } catch (e) {
       Fluttertoast.showToast(
         msg: 'Please check your internet connection.',
         toastLength: Toast.LENGTH_LONG,
@@ -53,7 +53,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
         textColor: Colors.white,
         fontSize: 16.0
       );
-      
+      throw Exception('Error is $e');
     }
   }
 
@@ -68,7 +68,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
 
   @override
   void initState() {
-    fetchData(currentPage);
+    // fetchData(currentPage);
     _scrollController.addListener(_scrollListener);
     super.initState();
   }
@@ -94,113 +94,135 @@ class _HomepageWidgetState extends State<HomepageWidget> {
           )
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: RefreshIndicator.adaptive(
-              onRefresh: () async {
-                fetchData(1);
-              },
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount: reportedIncidents.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    margin: const EdgeInsets.all(5.0),
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          ListTile(
-                            leading: reportedIncidents[index].incidentType ==
-                                    "Road accident"
-                                ? Icon(
-                                    Icons.car_crash,
-                                    color: Colors.red[700],
-                                    size: 30.0,
-                                  )
-                                : Icon(
-                                    Icons.flag,
-                                    color: Colors.amber[300],
-                                  ),
-                            title: Text(
-                              reportedIncidents[index].incidentType,
-                              style: const TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            subtitle: Text(
-                              reportedIncidents[index].description,
-                              style: const TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 8.0),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 70.0, bottom: 10.0),
-                                child: Text(
-                                  '${reportedIncidents[index].incidentDate} ${reportedIncidents[index].incidentTime}',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black38,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-            ),
-          ),
-          
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (currentPage > 1) // show previous button
-                Container(
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      currentPage--;
-                      fetchData(currentPage);
-                    },
-                    child: const Text('Previous', style: TextStyle(color: Colors.white)),
-                  ),
+      body: Center(
+        child: FutureBuilder(
+          future: _incidentFutureData,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator.adaptive();
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.cancel_outlined),
+                    Text('Could not fetch data! Check your internet connection.')
+                  ],
                 ),
-              const SizedBox(width: 10),
-              if (currentPage > 1 && currentPage < totalPages) // show previous button
-                Container(
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(10),
+              );
+            } else {
+              reportedIncidents = snapshot.data!;
+              return Column(
+                children: [
+                  Expanded(
+                    child: RefreshIndicator.adaptive(
+                      onRefresh: () async {
+                        fetchData(1);
+                      },
+                      child: ListView.builder(
+                        controller: _scrollController,
+                        itemCount: reportedIncidents.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            margin: const EdgeInsets.all(5.0),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    leading: reportedIncidents[index].incidentType ==
+                                            "Road accident"
+                                        ? Icon(
+                                            Icons.car_crash,
+                                            color: Colors.red[700],
+                                            size: 30.0,
+                                          )
+                                        : Icon(
+                                            Icons.flag,
+                                            color: Colors.amber[300],
+                                          ),
+                                    title: Text(
+                                      reportedIncidents[index].incidentType,
+                                      style: const TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      reportedIncidents[index].description,
+                                      style: const TextStyle(
+                                        fontSize: 16.0,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 70.0, bottom: 10.0),
+                                        child: Text(
+                                          '${reportedIncidents[index].incidentDate} ${reportedIncidents[index].incidentTime}',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black38,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                    ),
                   ),
-                  child: TextButton(
-                    onPressed: () {
-                      currentPage++;
-                      fetchData(currentPage);
-                    },
-                    child: const Text('Next', style: TextStyle(color: Colors.white)),
+                  
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (currentPage > 1) // show previous button
+                        Container(
+                          decoration: BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              currentPage--;
+                              fetchData(currentPage);
+                            },
+                            child: const Text('Previous', style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      const SizedBox(width: 10),
+                      if (currentPage > 1 && currentPage < totalPages) // show previous button
+                        Container(
+                          decoration: BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              currentPage++;
+                              fetchData(currentPage);
+                            },
+                            child: const Text('Next', style: TextStyle(color: Colors.white)),
+                          ),
+                        )
+                    ],
                   ),
-                )
-            ],
-          ),
-          
-        ],
+                  
+                ],
+              );
+            }
+          },
+        ),
       ),
       
       floatingActionButton: FloatingActionButton(
