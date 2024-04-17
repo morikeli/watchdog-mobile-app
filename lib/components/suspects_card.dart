@@ -190,7 +190,7 @@ class SuspectsCard extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Text(
-              'Kshs. ${suspectBounty.toString()}/=',
+              'Kshs. ${NumberFormat('#,###').format(suspectBounty)}/=',
               style: const TextStyle(
                 color: Colors.red,
                 fontSize: 18.0,
