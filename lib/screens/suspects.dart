@@ -42,13 +42,12 @@ class _WantedSuspectsState extends State<WantedSuspects> {
         textColor: Colors.white,
         fontSize: 16.0,
       );
-      print('Error is $e');
+      throw Exception('Error is $e');
     }
   }
-
+  
   @override
   void initState() {
-    fetchSuspectData(currentPage);
     super.initState();
   }
 
