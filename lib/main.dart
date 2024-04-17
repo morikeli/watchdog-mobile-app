@@ -74,7 +74,15 @@ class MainApp extends StatelessWidget {
         progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: kPrimaryColor,
         ),
-
+        timePickerTheme: TimePickerThemeData(
+          confirmButtonStyle: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+          ),
+          cancelButtonStyle: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+          ),
+          dialHandColor: kPrimaryColor,
+        )
       ),
       routes: {
         '': (context) => const OnboardingScreen(),
