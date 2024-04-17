@@ -45,15 +45,6 @@ class MainApp extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: kTextColor
         ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: kPrimaryColor,
-          foregroundColor: kIconColor,
-          shape: CircleBorder()
-        ),
-        primaryColor: kPrimaryColor,
-        progressIndicatorTheme: const ProgressIndicatorThemeData(
-          color: kPrimaryColor,
-        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
@@ -64,6 +55,16 @@ class MainApp extends StatelessWidget {
             )
           )
         ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: kPrimaryColor,
+          foregroundColor: kIconColor,
+          shape: CircleBorder()
+        ),
+        primaryColor: kPrimaryColor,
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: kPrimaryColor,
+        ),
+
       ),
       routes: {
         '': (context) => const OnboardingScreen(),
