@@ -51,6 +51,9 @@ class MainApp extends StatelessWidget {
           shape: CircleBorder()
         ),
         primaryColor: kPrimaryColor,
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: kPrimaryColor,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
