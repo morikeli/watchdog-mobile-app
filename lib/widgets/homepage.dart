@@ -44,8 +44,16 @@ class _HomepageWidgetState extends State<HomepageWidget> {
       setState(() {
         reportedIncidents = results.map((item) => Incidents.fromJSON(item)).toList();
       });
-    } catch (e) {
-      print('Error is $e');
+    } catch (httpClientException) {
+      Fluttertoast.showToast(
+        msg: 'Please check your internet connection.',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.red[600],
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+      
     }
   }
 
