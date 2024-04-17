@@ -22,13 +22,15 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           centerTitle: true,
           color: kAppBarColor,
-          iconTheme: IconThemeData(
+          elevation: 7.0,
+          shadowColor: Colors.grey[850],
+          iconTheme: const IconThemeData(
             color: kIconColor,
           ),
-          titleTextStyle: TextStyle(
+          titleTextStyle: const TextStyle(
             color: Colors.white,
             fontSize: 20.0,
             fontWeight: FontWeight.bold
