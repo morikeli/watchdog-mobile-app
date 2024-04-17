@@ -77,7 +77,15 @@ class _WantedSuspectsState extends State<WantedSuspects> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator.adaptive();
             } else if (snapshot.hasError) {
-              throw Exception('Error is: ${snapshot.error}');
+              return const Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.cancel_outlined),
+                    Text('Could not fetch data! Check your internet connection.')
+                  ],
+                ),
+              );
             } else {
               List<Suspects> wantedSuspects = snapshot.data!;
 
