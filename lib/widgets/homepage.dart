@@ -99,26 +99,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
           Expanded(
             child: RefreshIndicator.adaptive(
               onRefresh: () async {
-                try {
-                  String apiURL = '$api/reported-incidents/?page=1';
-                  http.Response response = await http.get(Uri.parse(apiURL));
-                  var data = json.decode(response.body);
-                  List<dynamic> results = data['results'];
-                  totalPages = (data['count'] / 10).ceil();
-                  
-                  setState(() {
-                    reportedIncidents = results.map((item) => Incidents.fromJSON(item)).toList();
-                  });
-                } catch (e) {
-                  Fluttertoast.showToast(
-                    msg: "An error occured! Please try again later.",
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.TOP,
-                    backgroundColor: Colors.red.shade400,
-                    textColor: Colors.white,
-                    fontSize: 20.0
-                  );
-                }
+                fetchData(1);
               },
               child: ListView.builder(
                 controller: _scrollController,
