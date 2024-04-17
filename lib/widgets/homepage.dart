@@ -69,7 +69,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
   @override
   void initState() {
     fetchData(currentPage);
-    // _scrollController.addListener(_scrollListener);
+    _scrollController.addListener(_scrollListener);
     super.initState();
   }
 
