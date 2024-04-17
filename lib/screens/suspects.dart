@@ -31,9 +31,8 @@ class _WantedSuspectsState extends State<WantedSuspects> {
       List<dynamic> results = data['results'];
       totalPages = (data['count'] / 10).ceil();
       
-      setState(() {
-        wantedSuspects = results.map((item) => Suspects.fromJSON(item)).toList();
-      });
+      List<Suspects> wantedSuspects = results.map((item) => Suspects.fromJSON(item)).toList();
+      return wantedSuspects;
     } catch (e) {
       Fluttertoast.showToast(
         msg: 'Please check your internet connection',
