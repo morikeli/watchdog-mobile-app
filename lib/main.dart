@@ -45,6 +45,16 @@ class MainApp extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: kTextColor
         ),
+        datePickerTheme: DatePickerThemeData(
+          confirmButtonStyle: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+          ),
+          cancelButtonStyle: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+          ),
+          todayBackgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+          todayForegroundColor: MaterialStateProperty.all<Color>(kTextColor),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
