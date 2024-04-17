@@ -175,6 +175,44 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                 }),
             ),
           ),
+          if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent)
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (currentPage > 1) // show previous button
+                  Container(
+                    decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        currentPage--;
+                        fetchData(currentPage);
+                      },
+                      child: const Text('Previous', style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                const SizedBox(width: 10),
+                if (currentPage > 1 && currentPage < totalPages) // show previous button
+                  Container(
+                    decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        currentPage++;
+                        fetchData(currentPage);
+                      },
+                      child: const Text('Next', style: TextStyle(color: Colors.white)),
+                    ),
+                  )
+              ],
+            ),
+          ),
+          
         ],
       ),
       
