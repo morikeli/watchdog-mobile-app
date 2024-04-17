@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:watchdog/constants/api.dart';
 import 'package:watchdog/constants/colors.dart';
-import 'package:watchdog/pages/homepage.dart';
+import 'package:watchdog/screens/homepage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
