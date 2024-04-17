@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:watchdog/constants/colors.dart';
-import 'package:watchdog/pages/login.dart';
-import 'package:watchdog/pages/map.dart';
-import 'package:watchdog/pages/profile.dart';
-import 'package:watchdog/pages/suspects.dart';
+import 'package:watchdog/screens/login.dart';
+import 'package:watchdog/screens/map.dart';
+import 'package:watchdog/screens/profile.dart';
+import 'package:watchdog/screens/suspects.dart';
 import 'package:watchdog/screens/onboarding/onboarding.dart';
 import 'package:watchdog/screens/splash_screen.dart';
-import 'pages/homepage.dart';
+import 'screens/homepage.dart';
 
 
 void main() {
