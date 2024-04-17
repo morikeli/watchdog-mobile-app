@@ -89,7 +89,7 @@ class _WantedSuspectsState extends State<WantedSuspects> {
                     suspectBounty: wantedSuspects[index].bounty,
                     suspectLastSeenLocation: wantedSuspects[index].lastSeenLocation,
                     suspectCurrentStatus: wantedSuspects[index].status,
-                    suspectImage: "",
+                    suspectImage: mediaURL + wantedSuspects[index].suspectImage,  // media files path
                   );
                 },
               ),
