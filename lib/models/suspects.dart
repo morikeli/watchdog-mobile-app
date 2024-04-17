@@ -1,9 +1,8 @@
 class Suspects {
-  String id;
   String name;
   String nickname;
   String gender;
-  String bounty;
+  int bounty;
   String crime;
   String status;
   String suspectDescription;
@@ -11,7 +10,6 @@ class Suspects {
   String lastSeenLocation;
 
   Suspects ({
-    required this.id,
     required this.name,
     required this.nickname,
     required this.gender,
@@ -26,7 +24,6 @@ class Suspects {
 
   factory Suspects.fromJSON(Map<String, dynamic> json) {
     return Suspects(
-      id: json['id'],
       name: json['name'],
       nickname: json['nickname'],
       gender: json['gender'],
@@ -34,7 +31,7 @@ class Suspects {
       crime: json['crime'],
       status: json['status'],
       suspectDescription: json['suspect_description'],
-      suspectImage: json['suspect_image'],
+      suspectImage: json['suspect_img'],
       lastSeenLocation: json['last_seen_location']
     );
   }
