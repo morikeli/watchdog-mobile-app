@@ -20,9 +20,10 @@ class _WantedSuspectsState extends State<WantedSuspects> {
   List<Suspects> wantedSuspects = [];
   int currentPage = 1;
   int totalPages = 1;
+  late Future<List<Suspects>> _dataFuture = fetchSuspectData(currentPage);
   
   
-  void fetchSuspectData(int page) async {
+  Future<List<Suspects>> fetchSuspectData(int page) async {
     try {
       String apiURL = '$api/wanted-suspects?page=$page';
       http.Response response = await http.get(Uri.parse(apiURL));
@@ -71,31 +72,46 @@ class _WantedSuspectsState extends State<WantedSuspects> {
         ),
         backgroundColor: Colors.blue[900],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: RefreshIndicator.adaptive(
-              onRefresh: () async {
-                fetchSuspectData(1);
-              },
-              child: ListView.builder(
-                itemCount: wantedSuspects.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return SuspectsCard(
-                    suspectName: wantedSuspects[index].name,
-                    suspectAlias: wantedSuspects[index].nickname,
-                    suspectGender: wantedSuspects[index].gender,
-                    suspectCrime: wantedSuspects[index].crime,
-                    suspectBounty: wantedSuspects[index].bounty,
-                    suspectLastSeenLocation: wantedSuspects[index].lastSeenLocation,
-                    suspectCurrentStatus: wantedSuspects[index].status,
-                    suspectImage: mediaURL + wantedSuspects[index].suspectImage,  // media files path
-                  );
-                },
-              ),
-            ),
-          )
-        ],
+      body: Center(
+        child: FutureBuilder(
+          future: _dataFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator.adaptive();
+            } else if (snapshot.hasError) {
+              throw Exception('Error is: ${snapshot.error}');
+            } else {
+              List<Suspects> wantedSuspects = snapshot.data!;
+
+              return Column(
+                children: [
+                  Expanded(
+                    child: RefreshIndicator.adaptive(
+                      onRefresh: () async {
+                        fetchSuspectData(1);
+                      },
+                      child: ListView.builder(
+                        itemCount: wantedSuspects.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SuspectsCard(
+                            suspectName: wantedSuspects[index].name,
+                            suspectAlias: wantedSuspects[index].nickname,
+                            suspectGender: wantedSuspects[index].gender,
+                            suspectCrime: wantedSuspects[index].crime,
+                            suspectBounty: wantedSuspects[index].bounty,
+                            suspectLastSeenLocation: wantedSuspects[index].lastSeenLocation,
+                            suspectCurrentStatus: wantedSuspects[index].status,
+                            suspectImage: mediaURL + wantedSuspects[index].suspectImage,  // media files path
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              );
+            }
+          },
+        ),
       )  
     );
   }
