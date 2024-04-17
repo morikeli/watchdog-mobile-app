@@ -20,10 +20,15 @@ class _WantedSuspectsState extends State<WantedSuspects> {
   List<Suspects> wantedSuspects = [];
   int currentPage = 1;
   int totalPages = 1;
-  late Future<List<Suspects>> _dataFuture = fetchSuspectData(currentPage);
+  bool isLoading = false;
   
   
-  Future<List<Suspects>> fetchSuspectData(int page) async {
+  fetchSuspectData(int page) async {
+    setState(() {
+      isLoading = true;
+    });
+    await Future.delayed(const Duration(seconds: 1));
+
     try {
       String apiURL = '$api/wanted-suspects?page=$page';
       http.Response response = await http.get(Uri.parse(apiURL));
@@ -31,8 +36,10 @@ class _WantedSuspectsState extends State<WantedSuspects> {
       List<dynamic> results = data['results'];
       totalPages = (data['count'] / 10).ceil();
       
-      List<Suspects> wantedSuspects = results.map((item) => Suspects.fromJSON(item)).toList();
-      return wantedSuspects;
+      setState(() {
+        wantedSuspects = results.map((item) => Suspects.fromJSON(item)).toList(); 
+        isLoading = false;       
+      });
     } catch (e) {
       Fluttertoast.showToast(
         msg: 'Please check your internet connection',
@@ -44,6 +51,10 @@ class _WantedSuspectsState extends State<WantedSuspects> {
       );
       throw Exception('Error is $e');
     }
+  }
+
+  Future<void> _refreshData() async {
+    await fetchSuspectData(1);
   }
   
   @override
@@ -70,56 +81,35 @@ class _WantedSuspectsState extends State<WantedSuspects> {
         ),
         backgroundColor: Colors.blue[900],
       ),
-      body: Center(
-        child: FutureBuilder(
-          future: _dataFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator.adaptive();
-            } else if (snapshot.hasError) {
-              return const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.cancel_outlined),
-                    Text('Could not fetch data! Check your internet connection.')
-                  ],
-                ),
-              );
-            } else {
-              List<Suspects> wantedSuspects = snapshot.data!;
-
-              return Column(
-                children: [
-                  Expanded(
-                    child: RefreshIndicator.adaptive(
-                      color: kPrimaryColor,
-                      onRefresh: () async {
-                        fetchSuspectData(1);
-                      },
-                      child: ListView.builder(
-                        itemCount: wantedSuspects.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return SuspectsCard(
-                            suspectName: wantedSuspects[index].name,
-                            suspectAlias: wantedSuspects[index].nickname,
-                            suspectGender: wantedSuspects[index].gender,
-                            suspectCrime: wantedSuspects[index].crime,
-                            suspectBounty: wantedSuspects[index].bounty,
-                            suspectLastSeenLocation: wantedSuspects[index].lastSeenLocation,
-                            suspectCurrentStatus: wantedSuspects[index].status,
-                            suspectImage: mediaURL + wantedSuspects[index].suspectImage,  // media files path
-                          );
-                        },
-                      ),
-                    ),
-                  )
-                ],
-              );
-            }
-          },
-        ),
-      )  
+      body: isLoading ?
+      const Center(
+        child: CircularProgressIndicator.adaptive(),
+      )
+      : Column(
+        children: [
+          Expanded(
+            child: RefreshIndicator.adaptive(
+              color: kPrimaryColor,
+              onRefresh: _refreshData,
+              child: ListView.builder(
+                itemCount: wantedSuspects.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return SuspectsCard(
+                    suspectName: wantedSuspects[index].name,
+                    suspectAlias: wantedSuspects[index].nickname,
+                    suspectGender: wantedSuspects[index].gender,
+                    suspectCrime: wantedSuspects[index].crime,
+                    suspectBounty: wantedSuspects[index].bounty,
+                    suspectLastSeenLocation: wantedSuspects[index].lastSeenLocation,
+                    suspectCurrentStatus: wantedSuspects[index].status,
+                    suspectImage: mediaURL + wantedSuspects[index].suspectImage,  // media files path
+                  );
+                },
+              ),
+            ),
+          )
+        ],
+      )
     );
   }
 }
