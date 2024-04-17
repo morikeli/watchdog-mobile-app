@@ -10,7 +10,8 @@ Watchdog is a platform to report road accidents and crimes. You can view the web
 
 2. Homepage
 
-![homepage](https://github.com/morikeli/watchdog-mobile-app/assets/78599959/455b15ee-dd6b-4755-8f54-7d5279bb5b1f)
+![flutter_01](https://github.com/morikeli/watchdog-mobile-app/assets/78599959/721b5b3b-fadf-45a3-8bc1-a8177a68031f)
+
 
 
 ## Overview
