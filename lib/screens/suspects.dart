@@ -23,7 +23,7 @@ class _WantedSuspectsState extends State<WantedSuspects> {
   bool isLoading = false;
   
   
-  fetchSuspectData(int page) async {
+  Future<void> fetchSuspectData(int page) async {
     setState(() {
       isLoading = true;
     });
