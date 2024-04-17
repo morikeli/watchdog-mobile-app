@@ -93,6 +93,7 @@ class _WantedSuspectsState extends State<WantedSuspects> {
                 children: [
                   Expanded(
                     child: RefreshIndicator.adaptive(
+                      color: kPrimaryColor,
                       onRefresh: () async {
                         fetchSuspectData(1);
                       },
