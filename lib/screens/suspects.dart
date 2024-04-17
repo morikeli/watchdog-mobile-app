@@ -60,6 +60,7 @@ class _WantedSuspectsState extends State<WantedSuspects> {
   @override
   void initState() {
     super.initState();
+    fetchSuspectData(currentPage);
   }
 
   @override
