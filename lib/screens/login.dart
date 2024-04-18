@@ -28,34 +28,55 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _login() async {
+    setState(() {
+      isLoading = true;
+    });
+    await Future.delayed(const Duration(seconds: 1));
+
     final username = _usernameController.text.trim();
     final password = _passwordController.text.trim();
 
-    final response = await http.post(
-      Uri.parse(authURL),
-      headers: <String, String>{
+    try {
+      http.Response response = await http.post(
+        Uri.parse(authURL),
+        headers: <String, String>{
         'Authorization':'Bearer ${base64Encode(utf8.encode('$username:$password'))}',
         'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String, String>{
-        'username': username,
-        'password': password,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      // Authentication successful, navigate to next screen
-      Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const Homepage()),
+        },
+        body: jsonEncode(<String, String>{
+          'username': username,
+          'password': password,
+        }),
       );
-    } else {
+      
+      setState(() {
+        if (response.statusCode == 200) {
+          // Authentication successful, navigate to next screen
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const Homepage()),
+          );
+          isLoading = false;
+        } else {
+          isLoading = false;
+          Fluttertoast.showToast(
+            msg: 'Authentication failed! Credentials maybe case-sensitive.',
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.TOP,
+            backgroundColor: Colors.red.shade600,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        }
+      }); 
+    
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           elevation: 2.0,
           showCloseIcon: true,
           backgroundColor: Colors.red[100],
           content: Text(
-            'Authentication failed! Password and email maybe case-sensitive.',
+            'ERROR!. Check your internet connection.',
             style: TextStyle(
               color: Colors.red[900],
               fontWeight: FontWeight.bold
