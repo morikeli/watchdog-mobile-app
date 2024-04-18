@@ -26,28 +26,62 @@ class _OSMMapState extends State<OSMMap> {
   }
 
   Future<void> fetchCoordinates() async {
-    final response = await http.get(Uri.parse('$api/incidents/location'));
+    setState(() {
+      isLoading = true;  
+    });
+    await Future.delayed(const Duration(seconds: 1));
 
-    if (response.statusCode == 200) {
-      List<dynamic> data = json.decode(response.body);
-      
-      for (var markerCoord in data) {
-        double latitude = markerCoord['latitude'];
-        double longitude = markerCoord['longitude'];
+    try {
+      http.Response response = await http.get(Uri.parse('$api/incidents/location'));
+      if (response.statusCode == 200) {
+        isLoading = false;
+        List<dynamic> data = json.decode(response.body);
 
-        coordinates.add(
-          Marker(
-            point: LatLng(latitude, longitude),
-            child: const Icon(
-              Icons.location_on_sharp, 
-              color: Colors.red,
+        setState(() {
+          isLoading = false;
+        });
+        
+        for (var markerCoord in data) {
+          double latitude = markerCoord['latitude'];
+          double longitude = markerCoord['longitude'];
+
+          coordinates.add(
+            Marker(
+              point: LatLng(latitude, longitude),
+              child: const Icon(
+                Icons.location_on_sharp, 
+                color: Colors.red,
+              )
             )
-          )
+          );
+        }
+      } else {
+        isLoading = false;
+        Fluttertoast.showToast(
+          msg: 'Please check your internet connection!',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.TOP,
+          backgroundColor: Colors.red.shade600,
+          textColor: Colors.white,
+          fontSize: 16.0,
         );
       }
-    } else {
-      throw Exception('Failed to load coordinates - status code: ${response.statusCode}');
+
+    } catch(e) {
+        Fluttertoast.showToast(
+          msg: 'Could not load coordinates!',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.TOP,
+          backgroundColor: Colors.red.shade600,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
     }
+    
+  }
+
+  Future<void> _refreshData() async {
+    await fetchCoordinates();
   }
 
   void zoomIn() {
