@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   String authURL = '$api/auth/login';
+  bool isLoading = false;
 
   @override
   void initState() {
