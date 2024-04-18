@@ -17,6 +17,7 @@ class OSMMap extends StatefulWidget {
 class _OSMMapState extends State<OSMMap> {
   final MapController _mapController = MapController();
   List<Marker> coordinates = [];
+  bool isLoading = false;
 
   @override
   void initState() {
