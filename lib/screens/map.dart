@@ -144,11 +144,13 @@ class _OSMMapState extends State<OSMMap> {
           child: Column(
             children: [
               FloatingActionButton(
+                mini: true,
                 onPressed: zoomIn,
                 child: const Icon(Icons.add),
               ),
               const SizedBox(height: 10),
               FloatingActionButton(
+                mini: true,
                 onPressed: zoomOut,
                 child: const Icon(Icons.remove),
               )
