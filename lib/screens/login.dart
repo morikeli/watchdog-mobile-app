@@ -95,99 +95,48 @@ class _LoginPageState extends State<LoginPage> {
         title: const Text('Login'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text(
-                'Welcome back', 
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35.0,
-                  color: Colors.black54,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _usernameController,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.person_outline),
-                  prefixIconColor: Colors.grey,
-                  labelText: 'Username',
-                  hintText: 'Enter your username',
-                  hintStyle: TextStyle(color: Colors.grey.shade500),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(28),
-                    borderSide: const BorderSide(color: Colors.grey),
-                    gapPadding: 10,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(28),
-                    borderSide: const BorderSide(color: Colors.grey),
-                    gapPadding: 10,
-                  ),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter username';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.lock_outline),
-                  prefixIconColor: Colors.grey,
-                  labelText: 'Password',
-                  hintText: 'Enter your password',
-                  hintStyle: TextStyle(color: Colors.grey.shade500),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(28),
-                    borderSide: const BorderSide(color: Colors.grey),
-                    gapPadding: 10,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(28),
-                    borderSide: const BorderSide(color: Colors.grey),
-                    gapPadding: 10,
-                  ),
-                ),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter password';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: kPrimaryColor
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _login();
-                    }
-                  },
-                  child: const Text('Login', style: TextStyle(color: Colors.white)),
-                ),
-              ),
-            ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          LoginForm(
+            formKey: _formKey,
+            username: _usernameController, 
+            password: _passwordController,
           ),
-        ),
-      ),
+          const SizedBox(height: 5.0),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Stack(
+              children: [
+                  Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: kPrimaryColor
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _login();
+                      }
+                    },
+                    child: const Text('Login', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                if (isLoading)
+                const Positioned.fill(
+                  child: Center(
+                    child: CircularProgressIndicator.adaptive(
+                      backgroundColor: Colors.white,
+                    ),
+                  )
+                ),
+                    
+              ]
+            ),
+          ),
+        ],
+      )
     );
   }
 }
