@@ -121,61 +121,13 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                   controller: _scrollController,
                   itemCount: reportedIncidents.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      margin: const EdgeInsets.all(5.0),
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              leading: reportedIncidents[index].incidentType ==
-                                      "Road accident"
-                                  ? Icon(
-                                      Icons.car_crash,
-                                      color: Colors.red[700],
-                                      size: 30.0,
-                                    )
-                                  : Icon(
-                                      Icons.flag,
-                                      color: Colors.amber[300],
-                                    ),
-                              title: Text(
-                                reportedIncidents[index].incidentType,
-                                style: const TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              subtitle: Text(
-                                reportedIncidents[index].description,
-                                style: const TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.black54,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8.0),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 70.0, bottom: 10.0),
-                                  child: Text(
-                                    '${reportedIncidents[index].incidentDate} ${reportedIncidents[index].incidentTime}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black38,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                    return IncidentsCard(
+                      incidentType: reportedIncidents[index].incidentType,
+                      incidentDate: reportedIncidents[index].incidentDate,
+                      incidentTime: reportedIncidents[index].incidentTime,
+                      description: reportedIncidents[index].description,
+                      reportedBy: reportedIncidents[index].reportedBy,
+                      dateReported: reportedIncidents[index].dateReported,
                     );
                   }),
               ),
