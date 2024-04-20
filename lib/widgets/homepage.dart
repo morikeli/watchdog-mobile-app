@@ -24,7 +24,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
   bool isLoading = false;
 
   void _scrollListener() {
-    if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+    if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent && currentPage == 1) {
       setState(() {
       //   update currentPage
         if (currentPage < totalPages) {
