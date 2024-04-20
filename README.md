@@ -20,11 +20,16 @@ In the mobile app, user can:
 ## Developer instructions
 ---
 **NOTE**: 
-* To run this project, you **MUST** install Flutter SDK on your machine. You can search for Flutter documentation using your preferred search engine. Flutter documentation provides a step-by-step guide on how to install the Flutter SDK on your computer.
+* To run this project, you **MUST** install Flutter SDK on your machine. Refer to [Flutter's documentation](https://docs.flutter.dev/get-started/install) and follow a step-by-step guide on how you can install Flutter SDK on your OS.
 
 * Make sure you have installed Android Studio or a text editor of your choice - VS Code or XCode.
 
 * Make sure your machine supports virtualization - required to run an emulator. If does not don't worry, install `scrcpy` on your machine or use Android Studio's `mirror device` feature.
+
+**Scrcpy Installation guide** 
+* [Install scrcpy on Windows](https://github.com/Genymobile/scrcpy/blob/master/doc/windows.md)
+* [Install scrcpy on Linux](https://github.com/Genymobile/scrcpy/blob/master/doc/linux.md)
+* [Install scrcpy on MacOS](https://github.com/Genymobile/scrcpy/blob/master/doc/macos.md)
 
 ---
 
