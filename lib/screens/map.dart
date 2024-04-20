@@ -69,13 +69,14 @@ class _OSMMapState extends State<OSMMap> {
 
     } catch(e) {
         Fluttertoast.showToast(
-          msg: 'Could not load coordinates!',
+          msg: 'It seems you may have internet connection issues!',
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.TOP,
           backgroundColor: Colors.red.shade600,
           textColor: Colors.white,
           fontSize: 16.0,
         );
+        throw Exception('Exception is $e');
     }
     
   }
