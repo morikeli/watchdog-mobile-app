@@ -63,5 +63,5 @@ Don't forget to star the repo 🌟😉
 
 ## Known issues
 
-1. The profile picture is a static screen.
+1. The profile screen is a static screen.
 2. Notification in the homepage and settings and logout icons in profile page are not functional. Their functionalities is still in progress.
