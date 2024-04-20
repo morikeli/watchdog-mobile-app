@@ -28,9 +28,6 @@ In the mobile app, user can:
 4. Report an incident.
 
 ## Developer instructions
-Installation guide for developers
-
-
 ---
 **NOTE**: 
 * To run this project, you **MUST** install Flutter SDK on your machine. You can search for Flutter documentation using your preferred search engine. Flutter documentation provides a step-by-step guide on how to install the Flutter SDK on your computer.
@@ -41,6 +38,7 @@ Installation guide for developers
 
 ---
 
+#### Installation guide for developers
 
 1. Git clone
 Clone this repository by opening your terminal/CMD and change the current working directory to Desktop - use `cd Desktop` command.
@@ -56,7 +54,7 @@ Clone this repository by opening your terminal/CMD and change the current workin
 3. Make sure you have a very strong internet connection so that the necessary gradle files can be downloaded. These files are necessary to build the project `apk` file.
 
 ---
-**NOTE**:
+**Keep in mind**:
 * When building the application for the first time, it may take 10 - 15 minutes to finish the installation and build process.
 * When running the application using the `flutter run` command, it may take atleast a minute to install the build files on a physical device.
 ---
