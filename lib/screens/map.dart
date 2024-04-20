@@ -104,6 +104,12 @@ class _OSMMapState extends State<OSMMap> {
             onPressed: () => Navigator.popAndPushNamed(context, '/home'),
             icon: const Icon(Icons.arrow_back),
           ),
+          actions: [
+            IconButton(
+              onPressed: _refreshData, 
+              icon: const Icon(Icons.refresh_outlined)
+            ),
+          ],
           title: const Text(
             'Map',
             style: TextStyle(
