@@ -120,7 +120,11 @@ class _OSMMapState extends State<OSMMap> {
           backgroundColor: Colors.blue[900],
         ),
       
-        body: FlutterMap(
+        body: isLoading ?
+        const Center(
+          child: CircularProgressIndicator.adaptive(),
+        )
+        : FlutterMap(
           mapController: _mapController,
             options: const MapOptions(
               initialCenter: LatLng(0.0236, 37.9062),
