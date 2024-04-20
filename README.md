@@ -64,3 +64,9 @@ Clone this repository by opening your terminal/CMD and change the current workin
 Incase of a bug or you wish to make an update create a new branch using git command `git checkout -b <name of your branch>` and create a pull request. Wait for review.
 
 Don't forget to star the repo 🌟😉
+
+
+## Known issues
+
+1. The profile picture is a static screen.
+2. Notification in the homepage and settings and logout icons in profile page are not functional. Their functionalities is still in progress.
