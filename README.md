@@ -1,5 +1,5 @@
-# Watchdog (mobile app)
-Watchdog is a platform to report road accidents and crimes. You can view the website platform via this [link](https://watch-dog-website.onrender.com/auth/login/). This is the mobile version of the platform.
+# Watchdog - mobile app
+Watchdog is a platform to report road accidents and crimes. You can view the website platform via this [link](https://watch-dog-website.onrender.com/auth/login/). This is the mobile application for the platform.
 
 ## Demo
 1. Onboarding screen
