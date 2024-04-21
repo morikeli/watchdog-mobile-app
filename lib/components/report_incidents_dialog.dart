@@ -63,14 +63,27 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
           textColor: Colors.white,
           fontSize: 16.0
         );
-        print('Successful!');
       } else {
         // Error while sending data
-        print('Error: ${response.reasonPhrase}');
+        Fluttertoast.showToast(
+          msg: 'Unknown error occured! Please check your internet connection',
+          gravity: ToastGravity.TOP_RIGHT,
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.red.shade500,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
       }
     } catch (e) {
       // Exception occurred
-      print('Exception: $e');
+      Fluttertoast.showToast(
+          msg: 'ERROR! Cannot complete the request. Please try again later.',
+          gravity: ToastGravity.TOP_RIGHT,
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.red.shade500,
+          textColor: Colors.white,
+          fontSize: 16.0,
+      );
     }
   }
 
