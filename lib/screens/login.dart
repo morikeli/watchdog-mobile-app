@@ -55,7 +55,6 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const Homepage()),
           );
-          isLoading = false;
         } else {
           isLoading = false;
           Fluttertoast.showToast(
