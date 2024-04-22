@@ -73,9 +73,10 @@ class _LoginPageState extends State<LoginPage> {
         SnackBar(
           elevation: 2.0,
           showCloseIcon: true,
+          closeIconColor: Colors.black,
           backgroundColor: Colors.red[100],
           content: Text(
-            'ERROR!. Check your internet connection.',
+            'ERROR! Check your internet connection.',
             style: TextStyle(
               color: Colors.red[900],
               fontWeight: FontWeight.bold
