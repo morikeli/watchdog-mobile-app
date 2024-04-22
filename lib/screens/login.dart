@@ -95,7 +95,11 @@ class _LoginPageState extends State<LoginPage> {
         title: const Text('Login'),
         centerTitle: true,
       ),
-      body: Column(
+      body: isLoading 
+        ? const Center(
+          child: CircularProgressIndicator.adaptive()
+        )
+        : Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           LoginForm(
