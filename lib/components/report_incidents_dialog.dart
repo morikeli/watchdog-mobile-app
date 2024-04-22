@@ -49,6 +49,13 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
         "reported_by": reportedBy
       };
 
+      Map<String, String> locationData = {
+        "county": county,
+        "sub_county": subCounty,
+        "place": place,
+        "landmark": landmark
+      };
+
       var response = await http.post(
         Uri.parse(apiUrl), 
         headers: <String, String>{
