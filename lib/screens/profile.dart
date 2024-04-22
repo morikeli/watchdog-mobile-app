@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:watchdog/constants/api.dart';
 import 'package:http/http.dart' as http;
-import 'package:watchdog/screens/login.dart';
 
 
 class ProfileScreen extends StatefulWidget {
