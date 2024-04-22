@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             icon: const Icon(Icons.settings)
           ),
           IconButton(
-            onPressed: () {}, 
+            onPressed: _logoutUser, 
             icon: const Icon(Icons.logout_sharp),
             tooltip: 'Logout',
           ),
