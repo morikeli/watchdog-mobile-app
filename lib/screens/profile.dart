@@ -13,6 +13,46 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  String apiLogoutUrl = '$api/auth/logout';
+  
+  Future<void> _logoutUser() async {
+    try {
+      var response = await http.post(Uri.parse(apiLogoutUrl),);
+
+      if (response.statusCode == 200) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+        Fluttertoast.showToast(
+          msg: "You are logged out!",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.TOP,
+          backgroundColor: Colors.green.shade400,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
+      } else {
+        // Error while sending data
+        Fluttertoast.showToast(
+          msg: '${response.statusCode} Unknown error occured! Please check your internet connection',
+          gravity: ToastGravity.TOP_RIGHT,
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.red.shade500,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      }
+    } catch (e) {
+      // Exception occurred
+      Fluttertoast.showToast(
+          msg: 'ERROR! Cannot complete the request. Please try again later.',
+          gravity: ToastGravity.TOP_RIGHT,
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.red.shade500,
+          textColor: Colors.white,
+          fontSize: 16.0,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
