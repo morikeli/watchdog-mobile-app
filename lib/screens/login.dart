@@ -126,16 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     child: const Text('Login', style: TextStyle(color: Colors.white)),
                   ),
-                ),
-                if (isLoading)
-                const Positioned.fill(
-                  child: Center(
-                    child: CircularProgressIndicator.adaptive(
-                      backgroundColor: Colors.white,
-                    ),
-                  )
-                ),
-                    
+                ),  
               ]
             ),
           ),
