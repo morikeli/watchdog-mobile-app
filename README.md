@@ -10,12 +10,12 @@ Watchdog mobile app is a platform that allows users to report road accidents and
 ## User instructions
 To use the application, users **MUST** have an active account or create an account on [Watchdog official website](https://watch-dog-website.onrender.com/auth/signup/). Once an account has been created, a user can login - *with his/her credentials* - using the login form provided by the app.
 
-In the mobile app, user can:
+In the mobile app, a user can:
     
-1. View reported incidents - news feed.
-2. View reported incidents on a map.
-3. View wanted suspects.
-4. Report an incident.
+1. view reported incidents - news feed.
+2. view reported incidents on a map.
+3. view wanted suspects.
+4. veport an incident.
 
 ## Developer instructions
 ---
