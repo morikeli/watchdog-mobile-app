@@ -100,39 +100,41 @@ class _LoginPageState extends State<LoginPage> {
         ? const Center(
           child: CircularProgressIndicator.adaptive()
         )
-        : Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          LoginForm(
-            formKey: _formKey,
-            username: _usernameController, 
-            password: _passwordController,
-          ),
-          const SizedBox(height: 5.0),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-            child: Stack(
-              children: [
-                  Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: kPrimaryColor
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _login();
-                      }
-                    },
-                    child: const Text('Login', style: TextStyle(color: Colors.white)),
-                  ),
-                ),  
-              ]
+        : Card(
+          child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            LoginForm(
+              formKey: _formKey,
+              username: _usernameController, 
+              password: _passwordController,
             ),
-          ),
-        ],
-      )
+            const SizedBox(height: 5.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+              child: Stack(
+                children: [
+                    Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: kPrimaryColor
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _login();
+                        }
+                      },
+                      child: const Text('Login', style: TextStyle(color: Colors.white)),
+                    ),
+                  ),  
+                ]
+              ),
+            ),
+          ],
+                ),
+        )
     );
   }
 }
