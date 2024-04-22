@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
         } else {
           isLoading = false;
           Fluttertoast.showToast(
-            msg: 'Authentication failed! Credentials maybe case-sensitive.',
+            msg: 'Invalid credentials! Please try again.',
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.TOP,
             backgroundColor: Colors.red.shade600,
