@@ -192,6 +192,22 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                 }
               },
             ),
+            TextField(
+              onChanged: (value) => county = value,
+              decoration: const InputDecoration(labelText: 'County'),
+            ),
+            TextField(
+              onChanged: (value) => subCounty = value,
+              decoration: const InputDecoration(labelText: 'Sub-county'),
+            ),
+            TextField(
+              onChanged: (value) => place = value,
+              decoration: const InputDecoration(labelText: 'Place'),
+            ),
+            TextField(
+              onChanged: (value) => landmark = value,
+              decoration: const InputDecoration(labelText: 'Nearest landmark'),
+            ),
 
           ],
         ),
