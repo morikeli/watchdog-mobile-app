@@ -32,9 +32,13 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
   TimeOfDay? incidentTime;
   List<String> options = ['Crime', 'Road accident'];  // options in a dropdown menu
   List<String> reporterOptions = ['Victim', 'Witness'];  // who reported the incident
+  String? county;
+  String? subCounty;
+  String? place;
+  String? landmark;
 
 
-  Future<void> sendDataToAPI(String incidentType, DateTime incidentDate, TimeOfDay incidentTime, String description, String reportedBy) async {
+  Future<void> sendDataToAPI(String incidentType, DateTime incidentDate, TimeOfDay incidentTime, String description, String reportedBy, String county, String subCounty, String place, String landmark) async {
     try {
       String apiUrl = '$api/reported-incidents/';
       Map<String, dynamic> data = {
