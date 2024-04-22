@@ -24,7 +24,7 @@ In the mobile app, a user can:
 
 * Make sure you have installed Android Studio or a text editor of your choice - VS Code or XCode.
 
-* Make sure your machine supports virtualization - required to run an emulator. If does not don't worry, install `scrcpy` on your machine or use Android Studio's `mirror device` feature.
+* Make sure your machine supports virtualization - required to run an emulator. If it doesn't, don't worry, you can install `scrcpy` on your machine or use Android Studio's `mirror device` feature.
 
 **Scrcpy Installation guide** 
 * [Install scrcpy on Windows](https://github.com/Genymobile/scrcpy/blob/master/doc/windows.md)
