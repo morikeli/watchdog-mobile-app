@@ -151,7 +151,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
             ),
             TextField(
               onChanged: (value) => description = value,
-              maxLines: 4,
+              maxLines: 2,
               decoration: const InputDecoration(labelText: 'Description'),
             ),
             ListTile(
