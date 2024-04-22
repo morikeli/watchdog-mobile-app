@@ -69,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
       }); 
     
     } catch (e) {
+      setState(() => isLoading= false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           elevation: 2.0,
