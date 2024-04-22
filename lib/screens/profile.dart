@@ -20,7 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       var response = await http.post(Uri.parse(apiLogoutUrl),);
 
       if (response.statusCode == 200) {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+        Navigator.popAndPushNamed(context, '/login');
         Fluttertoast.showToast(
           msg: "You are logged out!",
           toastLength: Toast.LENGTH_LONG,
