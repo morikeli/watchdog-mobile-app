@@ -230,6 +230,10 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
               incidentTime!,
               description.toString(),
               reportedBy.toString(),
+              county.toString(),
+              subCounty.toString(),
+              place.toString(),
+              landmark.toString(),
             );
             Navigator.pop(context);
           },
