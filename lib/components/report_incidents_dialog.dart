@@ -64,7 +64,16 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
         body: jsonEncode(data)
       );
 
-      if (response.statusCode == 201) {
+      // send to location endpoint
+      var _responseLoc = await http.post(
+        Uri.parse('$api/incidents/location'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(locationData),
+      );
+
+      if (response.statusCode == 201 || _responseLoc.statusCode == 201) {
         // Data sent successfully
         Fluttertoast.showToast(
           msg: "Submitted successfully!",
