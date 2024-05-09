@@ -39,7 +39,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
     setState(() {
       isLoading = true;
     });
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     try {
       String apiURL = '$api/reported-incidents/?page=$page';
