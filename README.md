@@ -39,7 +39,7 @@ In the mobile app, a user can:
 Clone this repository by opening your terminal/CMD and change the current working directory to Desktop - use `cd Desktop` command.
 ```bash
     $ cd Desktop
-    $ git clone 
+    $ git clone https://github.com/morikeli/watchdog-mobile-app.git
 ```
 
 2. Open the cloned repository on your text editor and run this command:
