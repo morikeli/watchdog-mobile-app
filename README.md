@@ -15,7 +15,7 @@ In the mobile app, a user can:
 1. view reported incidents - news feed.
 2. view reported incidents on a map.
 3. view wanted suspects.
-4. veport an incident.
+4. report an incident.
 
 ## Developer instructions
 ---
